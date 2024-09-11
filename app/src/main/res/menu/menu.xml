@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="হোম"
+        android:icon="@drawable/home_icon"
+        android:id="@+id/homeMenu"
+        android:iconTint="@color/primary_color"
+        />
+
+    <item android:title="নোট করুন"
+        android:id="@+id/addMenu"
+        android:icon="@drawable/note_icon"
+        android:iconTint="@color/primary_color"/>
+
+    <item android:title="প্রোফাইল"
+        android:id="@+id/profileMenu"
+        android:icon="@drawable/profile_icon"
+        android:iconTint="@color/primary_color"/>
+</menu>

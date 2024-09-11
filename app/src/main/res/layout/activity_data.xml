@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.DataActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/customToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="45dp"
+                android:layout_height="36dp"
+                android:padding="5dp"
+                android:elevation="10dp"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/appIcon"
+                android:layout_width="45dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvActivityName"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/btnBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvActivityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/tarunno"
+                android:text="ঘর বাগান"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnFav"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/appIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnFav"
+                android:layout_width="45dp"
+                android:layout_height="36dp"
+                android:elevation="10dp"
+                android:padding="5dp"
+                android:src="@drawable/favorite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/customToolbar"
+        android:background="@drawable/searchbar_bg"
+        android:layout_margin="8dp"
+        app:queryHint="এখানে খুজুন......"
+        app:iconifiedByDefault="false"
+        />
+
+    <FrameLayout
+        android:id="@+id/dataListFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/searchView"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
