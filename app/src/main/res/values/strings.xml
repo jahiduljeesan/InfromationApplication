@@ -8,4 +8,6 @@
         <item> Gazal </item>
         <item> Quote </item>
     </string-array>
+    <string name="nav_open">OpenNav</string>
+    <string name="nav_close">CloseNav</string>
 </resources>
