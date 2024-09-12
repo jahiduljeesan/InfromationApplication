@@ -19,6 +19,7 @@
       android:layout_gravity="start"
       app:itemIconTint="@color/primary_color"
       app:itemTextColor="@color/black"
+      app:headerLayout="@layout/nav_menu_header"
       app:menu="@menu/nav_menu"/>
 
 

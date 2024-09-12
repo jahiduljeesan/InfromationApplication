@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="8dp"
-        android:src="@drawable/home_icon"
+        android:src="@drawable/profile_imgae"
         android:background="@drawable/circle_image_bg"/>
     <TextView
         android:layout_width="wrap_content"
