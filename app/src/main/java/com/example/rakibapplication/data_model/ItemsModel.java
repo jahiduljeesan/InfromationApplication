@@ -1,4 +1,4 @@
-package com.example.rakibapplication;
+package com.example.rakibapplication.data_model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

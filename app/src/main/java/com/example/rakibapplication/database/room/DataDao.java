@@ -4,7 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Update;
 
-import com.example.rakibapplication.ItemsModel;
+import com.example.rakibapplication.data_model.ItemsModel;
 
 @Dao
 public interface DataDao {

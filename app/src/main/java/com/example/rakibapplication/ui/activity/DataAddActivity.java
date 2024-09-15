@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.rakibapplication.ItemsModel;
+import com.example.rakibapplication.data_model.ItemsModel;
 import com.example.rakibapplication.R;
 import com.example.rakibapplication.database.room.ContentDatabaseRoom;
 import com.example.rakibapplication.databinding.ActivityDataAddBinding;

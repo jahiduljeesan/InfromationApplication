@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.rakibapplication.ItemsModel;
+import com.example.rakibapplication.data_model.ItemsModel;
 
 @Database(entities = {ItemsModel.class}, version = 1)
 public abstract class ContentDatabaseRoom extends RoomDatabase {

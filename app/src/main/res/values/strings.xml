@@ -10,4 +10,6 @@
     </string-array>
     <string name="nav_open">OpenNav</string>
     <string name="nav_close">CloseNav</string>
+    <string name="sign_up"><u>Sign Up</u></string>
+    <string name="log_in"><u>Log In</u></string>
 </resources>

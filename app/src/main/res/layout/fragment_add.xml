@@ -6,12 +6,11 @@
     android:background="#2196F3"
     tools:context=".ui.fragments.AddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/blur_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:text="this is add fragment" />
+        android:src="@drawable/image_blur"
+        android:scaleType="fitXY"/>
 
 </FrameLayout>

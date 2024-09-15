@@ -5,4 +5,6 @@
     <color name="primary_color">#008080</color>
     <color name="nav_indicator_color">#B5008080</color>
     <color name="ash">#E4E4E4</color>
+    <color name="red">#E70707</color>
+    <color name="color_transparent">#E70707</color>
 </resources>

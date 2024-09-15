@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.rakibapplication.ItemsModel;
+import com.example.rakibapplication.data_model.ItemsModel;
 import com.example.rakibapplication.R;
 
 import java.util.List;

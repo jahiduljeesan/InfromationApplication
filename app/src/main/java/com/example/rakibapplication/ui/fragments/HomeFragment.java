@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import com.example.rakibapplication.R;
 import com.example.rakibapplication.databinding.FragmentHomeBinding;
 import com.example.rakibapplication.ui.activity.DataAddActivity;
+import com.example.rakibapplication.ui.activity.LoginActivity;
 
 
 public class HomeFragment extends Fragment {
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragHome = FragmentHomeBinding.inflate(inflater,container,false);
-        drawerLayout = fragHome.drawerLayout;
+        //drawerLayout = fragHome.drawerLayout;
         return fragHome.getRoot();
 
     }
@@ -53,10 +54,10 @@ public class HomeFragment extends Fragment {
         fragHome.homeViewContent.btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    drawerLayout.openDrawer(GravityCompat.START);
+                if (!fragHome.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    fragHome.drawerLayout.openDrawer(GravityCompat.START);
                 } else {
-                    drawerLayout.closeDrawer(GravityCompat.START);
+                    fragHome.drawerLayout.closeDrawer(GravityCompat.START);
                 }
             }
         });
@@ -65,6 +66,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
               startActivity(new Intent(requireContext(), DataAddActivity.class));
+            }
+        });
+        fragHome.homeViewContent.btQuotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(requireContext(), LoginActivity.class));
             }
         });
 
