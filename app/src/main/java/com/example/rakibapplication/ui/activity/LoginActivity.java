@@ -13,10 +13,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.rakibapplication.R;
 import com.example.rakibapplication.databinding.ActivityLoginBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
+    FirebaseAuth auth;
+    DatabaseReference userRef;
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +40,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+                parseSignup();
             }
         });
+    }
+
+    private void parseSignup() {
+
     }
 }
