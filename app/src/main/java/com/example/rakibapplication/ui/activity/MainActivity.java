@@ -1,7 +1,10 @@
 package com.example.rakibapplication.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +21,13 @@ import com.google.android.material.navigation.NavigationBarView;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding actMain;
+    String fragmentName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actMain = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(actMain.getRoot());
 
-        //setting the default fragment;
         replaceFragment(new HomeFragment());
 
         actMain.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -46,4 +49,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.mainFragmentsContainer,fragment);
         fragmentTransaction.commit();
     }
+
 }

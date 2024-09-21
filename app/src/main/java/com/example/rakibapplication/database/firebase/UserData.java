@@ -1,19 +1,17 @@
-package com.example.rakibapplication.database;
+package com.example.rakibapplication.database.firebase;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.rakibapplication.ui.activity.LoginActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.rakibapplication.ui.activity.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,12 +22,14 @@ public class UserData {
 
     //entities
     private String fullName = "",password = "",email = "";
-    FirebaseAuth auth;
-    DatabaseReference userRef;
-    FirebaseUser user;
-    Context context;
-    ProgressDialog progressDialog;
+    public String user_fullname;
+    private FirebaseAuth auth;
+    private DatabaseReference userRef;
+    private FirebaseUser user;
+    private Context context;
+    private ProgressDialog progressDialog;
     public static volatile UserData userData;
+    private SharedPreferences sharedPref;
 
     public UserData(Context context, String fullName, String password,String email) {
         this.context = context;
@@ -39,22 +39,14 @@ public class UserData {
         setDatafirebase();
     }
 
-//    public UserData() {
-//    }
-//
-//    public static UserData getUserData() {
-//        if (userData == null) {
-//            userData = new UserData();
-//        }
-//        return userData;
-//    }
-
     private void setDatafirebase() {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Signing Up...");
         progressDialog.setMessage("Please wait...");
         progressDialog.setCancelable(false); // Prevent manual dismissal
         progressDialog.show();
+
+        sharedPref = context.getSharedPreferences("com.info.application",Context.MODE_PRIVATE);
 
         auth = FirebaseAuth.getInstance();
         userRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -63,7 +55,7 @@ public class UserData {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        user = auth.getCurrentUser();
+                        user = authResult.getUser();
                         if (user != null) {
                             String uid = user.getUid();
                             Log.d("Firebase", "User UID: " + uid);
@@ -77,13 +69,22 @@ public class UserData {
                             }
 
                             // Save user's full name in the database
-                            userRef.child(uid).child("name").setValue(fullName)
+                            userRef.child(uid).child("username").setValue(fullName)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Log.d("Firebase", "User data saved successfully.");
                                             if (progressDialog.isShowing()) progressDialog.dismiss();
-                                            Toast.makeText(context, "Signed up and user data saved successfully!", Toast.LENGTH_SHORT).show();
+
+                                            sharedPref = context.getSharedPreferences("com.info.application", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPref.edit();
+                                            editor.putString("User_Name",fullName);
+                                            editor.putString("User_Email",email);
+                                            editor.apply();
+
+
+                                            Intent intent = new Intent(context,MainActivity.class);
+                                            context.startActivity(intent);
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -91,7 +92,7 @@ public class UserData {
                                         public void onFailure(@NonNull Exception e) {
                                             Log.e("Firebase", "Failed to save user data: " + e.getMessage(), e);
                                             if (progressDialog.isShowing()) progressDialog.dismiss();
-                                            Toast.makeText(context, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context,e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
                         } else {
@@ -104,11 +105,12 @@ public class UserData {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("Firebase", "Sign-up failed: " + e.getMessage(), e);
+                        Log.e("Firebase", e.getMessage(), e);
                         if (progressDialog.isShowing()) progressDialog.dismiss();
-                        Toast.makeText(context, "Sign-up failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
     }
+
 }

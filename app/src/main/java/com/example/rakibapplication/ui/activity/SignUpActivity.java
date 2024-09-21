@@ -1,18 +1,16 @@
 package com.example.rakibapplication.ui.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.rakibapplication.R;
-import com.example.rakibapplication.database.UserData;
+import com.example.rakibapplication.database.firebase.UserData;
 import com.example.rakibapplication.databinding.ActivitySignUpBinding;
 
 import java.util.regex.Matcher;
@@ -84,8 +82,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                 Log.d("init_user_data_check",initUserData()+"");
                 if (!initUserData()) return;
-                Toast.makeText(SignUpActivity.this, "data initialized", Toast.LENGTH_SHORT).show();
-
 
                 Log.d("Emailtext",email);
                 userData = new UserData(SignUpActivity.this,fullName,password,email);

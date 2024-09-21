@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "423184306066",
+    "firebase_url": "https://info-app-7e579-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "info-app-7e579",
+    "storage_bucket": "info-app-7e579.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423184306066:android:ab1ed07f5a9d8a55053b4b",
+        "android_client_info": {
+          "package_name": "com.example.rakibapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJrss03UFgVawL1E-cn_5wBTvwbkgelAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
