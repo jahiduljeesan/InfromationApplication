@@ -1,5 +1,8 @@
 package com.example.rakibapplication.ui.activity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +15,7 @@ import com.example.rakibapplication.data_model.ItemsModel;
 import com.example.rakibapplication.R;
 import com.example.rakibapplication.database.room.ContentDatabaseRoom;
 import com.example.rakibapplication.databinding.ActivityDataAddBinding;
+import com.example.rakibapplication.datahandeler.RoomToApi;
 
 public class DataAddActivity extends AppCompatActivity {
 
@@ -40,20 +44,38 @@ public class DataAddActivity extends AppCompatActivity {
         actDataAdd.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!getData()) return;
-
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        ContentDatabaseRoom.getContentRoom(DataAddActivity.this)
-                                .dataDao()
-                                .insertData(new ItemsModel(id,title,writer,category,content));
-                    }
-                });
-
-                Toast.makeText(DataAddActivity.this, "ধন্যবাদ! তথ্য সাবমিট হয়েছে।", Toast.LENGTH_SHORT).show();
+                setDataRoom();
+                if (haveNetworkConnectivity(DataAddActivity.this)) {
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            new RoomToApi(DataAddActivity.this);
+                        }
+                    });
+                }
             }
         });
+    }
+
+    private void setDataApi() {
+
+    }
+
+    private void setDataRoom() {
+        if (!getData()) {
+            Toast.makeText(DataAddActivity.this, "অনুগ্রহ করে সঠিক তথ্য প্রবেশ করুন।", Toast.LENGTH_SHORT).show();
+        }
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                ContentDatabaseRoom.getContentRoom(DataAddActivity.this,"content_room")
+                        .dataDao()
+                        .insertData(new ItemsModel(id,title,writer,category,content));
+            }
+        });
+
+        Toast.makeText(DataAddActivity.this, "ধন্যবাদ! তথ্য সাবমিট হয়েছে।", Toast.LENGTH_SHORT).show();
     }
 
     private boolean getData() {
@@ -80,5 +102,10 @@ public class DataAddActivity extends AppCompatActivity {
 
         return true;
 
+    }
+    private boolean haveNetworkConnectivity(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnected();
     }
 }

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 
 import com.example.rakibapplication.R;
 import com.example.rakibapplication.databinding.FragmentHomeBinding;
+import com.example.rakibapplication.ui.activity.DataActivity;
 import com.example.rakibapplication.ui.activity.DataAddActivity;
 import com.example.rakibapplication.ui.activity.LoginActivity;
 
@@ -59,6 +60,28 @@ public class HomeFragment extends Fragment {
                 } else {
                     fragHome.drawerLayout.closeDrawer(GravityCompat.START);
                 }
+            }
+        });
+
+        fragHome.homeViewContent.btnSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(requireActivity(), DataActivity.class);
+                intent.putExtra("Act_name","gaan");
+                startActivity(intent);
+
+            }
+        });
+
+        fragHome.homeViewContent.btnGazal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(requireActivity(), DataActivity.class);
+                intent.putExtra("Act_name","gazal");
+                startActivity(intent);
+
             }
         });
 

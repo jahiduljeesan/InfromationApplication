@@ -19,10 +19,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
      List<ItemsModel> itemsList;
      Context context;
+     String act_tag;
 
-    public DataAdapter(List<ItemsModel> itemsList, Context context) {
+    public DataAdapter(Context context, List<ItemsModel> itemsList,String act_tag) {
         this.itemsList = itemsList;
         this.context = context;
+        this.act_tag = act_tag;
     }
 
     @NonNull
@@ -35,11 +37,29 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull DataAdapter.ViewHolder holder, int position) {
 
+        setImage(holder);
+
+        holder.tvTitle.setText(itemsList.get(position).getTitle());
+        holder.tvWriter.setText(itemsList.get(position).getWriter());
+
+    }
+
+    private void setImage(DataAdapter.ViewHolder holder) {
+        if (act_tag.equals("gaan")) {
+            holder.ivImage.setImageResource(R.drawable.music);
+        }
+        if (act_tag.equals("gazal")) {
+            holder.ivImage.setImageResource(R.drawable.gazal);
+        }
     }
 
     @Override
     public int getItemCount() {
         return 0;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

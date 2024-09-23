@@ -33,7 +33,7 @@ public class AddFragment extends Fragment {
                 .setIcon(R.drawable.ic_launcher_background)
                 .setTitle("নোটিশ!")
                 .setMessage("নোট করার ফিচারটি," +
-                        "\nখুব শিঘ্রই এপ এ যুক্ত করা হবে।")
+                        "\n খুব শিঘ্রই এপ এ যুক্ত করা হবে।")
                 .create()
                 .show();
 

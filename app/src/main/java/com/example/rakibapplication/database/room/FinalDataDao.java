@@ -3,25 +3,21 @@ package com.example.rakibapplication.database.room;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import com.example.rakibapplication.data_model.ItemsModel;
 
 import java.util.List;
 
-import retrofit2.http.GET;
-
 @Dao
-public interface DataDao {
+public interface FinalDataDao {
+
     @Insert
-    public void insertData(ItemsModel items);
+    void insertData(List<ItemsModel> final_api_list);
 
     @Query("SELECT * FROM ItemsModel")
-    public List<ItemsModel> getAllData();
-
-    @Update
-    public void updateData(ItemsModel items);
+    List<ItemsModel> getAllUserData();
 
     @Query("DELETE FROM ItemsModel")
-    public void clearTable();
+    public void clearFinalTable();
+
 }
